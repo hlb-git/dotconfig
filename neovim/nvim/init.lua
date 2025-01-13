@@ -14,6 +14,8 @@ require('packer').startup(function(use)
 
 end)
 
+vim.keymap.set('n', '<leader>e', vim.diagnostic.open_float, { noremap = true, silent = true })
+
 require('nvim-treesitter.configs').setup {
   -- A list of parser names, or "all" (the listed parsers MUST always be installed)
   ensure_installed = {
@@ -92,9 +94,9 @@ vim.g.gruvbox_contrast_dark = "hard" -- Options: 'soft', 'medium', 'hard'
 vim.cmd("colorscheme gruvbox")
 vim.cmd("set number relativenumber")
 vim.cmd("set expandtab")
-vim.cmd("set tabstop=4")
-vim.cmd("set softtabstop=4")
-vim.cmd("set shiftwidth=4")
+vim.cmd("set tabstop=2")
+vim.cmd("set softtabstop=2")
+vim.cmd("set shiftwidth=2")
 vim.cmd("autocmd BufWritePre * %s/s+$//e")
 vim.cmd ([[
     set splitright
@@ -107,8 +109,19 @@ vim.cmd ([[
     syntax on
     set autoindent
     set clipboard=unnamedplus
-
+    set showtabline=1  " Always show
+    set showtabline=0  " Never show
+    highlight Normal cterm=bold gui=bold
+    highlight Comment cterm=bold gui=bold
+    highlight String cterm=bold gui=bold
+    nnoremap("<C-d>", "<C-d>zz")
+    nnoremap("<C-u>", "<C-u>zz")
 ]])
+
+
+
+vim.opt.termguicolors = true
+
 
 
 vim.api.nvim_set_keymap('n', '<C-p>', ':Files<CR>', { noremap = true, silent = true })     -- Find files
@@ -142,3 +155,16 @@ require('lualine').setup {
   tabline = {},                -- Leave this empty if you don't want a tabline
   extensions = {}
 }
+
+
+
+vim.diagnostic.config({
+  virtual_text = {
+    prefix = "●",
+  },
+  float = {
+    border = "rounded",
+    max_width = 80,
+  },
+})
+

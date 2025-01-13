@@ -163,19 +163,6 @@ source <(kubectl completion bash)
 alias hlb_server='ssh -i ~/.ssh/awshlb.pem ubuntu@13.245.143.36'
 alias sync_server="rsync -e 'ssh -i /home/hlb/.ssh/awshlb.pem' -avz --exclude='node_modules' --exclude='.gitignore'  /home/hlb/Medlaison/backend/* ubuntu@13.245.143.36:~/app"
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+eval "$(oh-my-posh init bash --config 'https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/kushal.omp.json')"
 
 
